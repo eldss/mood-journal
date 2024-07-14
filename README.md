@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mood Journal
 
-## Getting Started
+_Work in Progress_
 
-First, run the development server:
+To run the Mood Journal web app, first install the dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To enable user logins you will need to create a [Clerk](https://clerk.com/) account and set up a project. After following the instructions on the website, add the following environment variables in `.env.local`:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<key>
+CLERK_SECRET_KEY=<key>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/journal
+NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=/new-user
+```
 
-## Learn More
+I also used a [Supabase](https://supabase.com/) Postgres database to store backend data. You will need an account and a project there as well. Once you have them, add the following environment variables to `.env`:
 
-To learn more about Next.js, take a look at the following resources:
+```
+DATABASE_URL="<url>"
+DIRECT_URL="<direct_url>"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You can see how to construct these from this post describing setting up Prisma with Supabase: https://supabase.com/partners/integrations/prisma.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Sync the database model by running
 
-## Deploy on Vercel
+```bash
+npx prisma db push
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Finally, run the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+pnpm run dev
+```
+
+Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.

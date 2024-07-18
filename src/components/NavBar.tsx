@@ -8,7 +8,7 @@ export function NavBar() {
     <>
       <Navbar className="px-8">
         <Link href="/journal" aria-label="Journal">
-          <BookOpenIcon className="size-8 text-teal-950 dark:text-teal-700" />
+          <BookOpenIcon className="size-8 text-zinc-900 dark:text-zinc-200" />
         </Link>
         <NavbarSpacer />
         <ReactiveUserButton />

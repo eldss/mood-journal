@@ -29,13 +29,25 @@ DIRECT_URL="<direct_url>"
 
 You can see how to construct these from this post describing setting up Prisma with Supabase: https://supabase.com/partners/integrations/prisma.
 
+Create the client packages by running
+
+```bash
+npx prisma generate
+```
+
 Sync the database model by running
 
 ```bash
 npx prisma db push
 ```
 
-Finally, run the development server:
+You will also need an OpenAI account to enable AI evaluation of journal entries. Once you create an account, copy your secret key and add it to `.env.local`:
+
+```
+OPENAI_API_KEY=<secret-key>
+```
+
+Run the development server:
 
 ```bash
 pnpm run dev

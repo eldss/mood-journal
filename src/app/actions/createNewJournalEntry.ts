@@ -3,9 +3,10 @@
 import { getUserByClerkId } from "@/utils/auth"
 import prisma from "@/utils/db"
 import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 
 export async function createNewJournalEntry(formData: FormData) {
-  console.log("Creating new journal entry")
+  console.log("Creating new journal entry...")
 
   // Authorize the request
   const user = await getUserByClerkId()
@@ -33,6 +34,6 @@ export async function createNewJournalEntry(formData: FormData) {
   console.log("Created entry:", entry.id)
 
   // Refresh entries in journal page
-  // Might want path as an argument in the future
   revalidatePath("/journal", "page")
+  redirect(`/journal/${entry.id}`)
 }

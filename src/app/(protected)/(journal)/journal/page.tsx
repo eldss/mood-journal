@@ -1,4 +1,5 @@
 import { createNewJournalEntry } from "@/app/actions/createNewJournalEntry"
+import { Link } from "@/components/catalyst/link"
 import { JournalEntryCard } from "@/components/JournalEntryCard"
 import { NewJournalEntryDialog } from "@/components/NewJournalEntryDialog"
 import { getUserByClerkId } from "@/utils/auth"
@@ -21,14 +22,16 @@ export default async function JournalPage() {
   const entries = await getEntries()
 
   return (
-    <article>
-      <header className="mb-4 flex justify-between sm:block sm:space-y-4">
-        <h1 className="text-4xl font-bold sm:text-5xl">Journal</h1>
+    <article className="mx-4 max-w-screen-lg lg:mx-auto">
+      <header className="my-4 flex items-center justify-between">
+        <h1 className="text-5xl font-bold">Journal</h1>
         <NewJournalEntryDialog createNewEntry={createNewJournalEntry} />
       </header>
-      <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <section className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {entries.map((entry) => (
-          <JournalEntryCard key={entry.id} entry={entry} />
+          <Link href={`/journal/${entry.id}`}>
+            <JournalEntryCard key={entry.id} entry={entry} />
+          </Link>
         ))}
       </section>
     </article>

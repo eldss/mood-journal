@@ -54,5 +54,3 @@ pnpm run dev
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
-
-The app is not finished at this time so there are odd or unused visual elements, as well as unfinished styling, but it _will_ allow you to create an account, add journal entries, and get AI generated summaries of the entries via OpenAI APIs.
